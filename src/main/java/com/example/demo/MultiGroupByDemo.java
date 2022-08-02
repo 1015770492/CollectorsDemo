@@ -24,27 +24,27 @@ public class MultiGroupByDemo {
 
         // 1.Use the default vertical separator
         System.out.println("Use the default vertical separator:");
-        HashMap<String, List<User>> defaultSpilt = userList.stream().collect(Collectors.groupingBy(User::getName, User::getCity));
+        Map<String, List<User>> defaultSpilt = userList.stream().collect(Collectors.groupingBy(User::getName, User::getCity));
         printMap(defaultSpilt);
         System.out.println();
 
         // 2.Use custom delimiters
         System.out.println("Use custom delimiters:");
         userList.stream().collect(Collectors.groupingBy("--", User::getName, User::getCity, User::getId));
-        HashMap<? extends Serializable, List<User>> collect = userList.stream().collect(Collectors.groupingBy("--", User::getName, User::getCity, User::getId));
+        Map<? extends Serializable, List<User>> collect = userList.stream().collect(Collectors.groupingBy("--", User::getName, User::getCity, User::getId));
         printMap(collect);
         System.out.println();
 
         // 3.Use custom delimiters
         System.out.println("Use custom delimiters:");
         userList.stream().collect(Collectors.groupingBy("--", User::getName, User::getCity, User::getId));
-        HashMap<? extends Serializable, List<User>> collect2 = userList.stream().collect(Collectors.groupingBy(User::getName, User::getCity, User::getBirthDay));
+        Map<? extends Serializable, List<User>> collect2 = userList.stream().collect(Collectors.groupingBy(User::getName, User::getCity, User::getBirthDay));
         printMap(collect2);
-
+        userList.stream().sorted();
 
     }
 
-    public static <T> void printMap(Map<? extends Serializable, List<T>> map){
+    public static <T> void printMap(Map<? extends Serializable, List<T>> map) {
         map.forEach((k, v) -> {
             System.out.println(k);
             System.out.println(v);
